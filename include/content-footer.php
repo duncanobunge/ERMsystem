@@ -81,7 +81,7 @@
               <div class="input-group-prepend">
                  <span class="input-group-text" id="basic-addon3">Receiver Name</span>
               </div>
-                <input type="text" class="form-control" name="recerver_name" id="recerver_name" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" name="receiver_name" id="receiver_name" aria-describedby="basic-addon3">
             </div>
           </form>
         </div>

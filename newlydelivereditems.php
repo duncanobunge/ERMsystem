@@ -1,8 +1,18 @@
 
 <?php 
   include('include/content-header.php');
+  if(isset($_SESSION['user'])){
+
+    header("Location:http://localhost/IMS/index.php");
+
+}
+    if(isset($_POST['submit']) ){
+      
+      $crudops -> createNewItem($_POST);
+
+    }
   include('include/navbar.php');
-  
+
 ?>
 
         <!-- Begin Page Content -->
