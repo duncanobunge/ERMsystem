@@ -1,7 +1,8 @@
 
 <?php 
-  include('content-header.php');
-  include('navbar.php');
+  include('include/content-header.php');
+  include('include/navbar.php');
+  
 ?>
 
         <!-- Begin Page Content -->
@@ -27,6 +28,7 @@
                       <th>Quantity</th>
                       <th>Delivery Date</th>
                       <th>Receiver(Staff Name)</th>
+                      <th>Actions</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -37,6 +39,7 @@
                     <th>Quantity</th>
                     <th>Delivery Date</th>
                     <th>Receiver(Staff Name)</th>
+                    <th>Actions</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -46,13 +49,21 @@
                       <td>Edinburgh</td>
                       <td>61</td>
                       <td>2011/04/25</td>
-                      <td>$320,800</td>
+                      <td>jmes</td>
+                      <td>
+                         <a href="#" ><button class="btn btn-warning">Edit</button></a> |
+                         <a href="#" ><button class="btn btn-danger">Trash</button></a>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addItemModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  <button class="btn btn-primary" >Add</button>
+                </a>
 
         </div>
         <!-- /.container-fluid -->
