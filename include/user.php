@@ -40,7 +40,7 @@ catch(PDOException $e)
            $token = bin2hex(random_bytes(4));
            $name = $data['firstname']." ". $data['lastname'];
            $q = "SELECT * FROM user_tbl WHERE user_email='$data[email]'";
-            $run =$this->query($q);
+           $run =$this->query($q);
             if( $run->num_rows>0 ){
                 
                 $_SESSION['error'] = "Email Already Exist";

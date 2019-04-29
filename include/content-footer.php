@@ -36,6 +36,7 @@
   </div>
 
   <!-- Add Item Modal-->
+  
   <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -45,8 +46,17 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
+        <?php 
+                      if(isset($_SESSION['error']))
+                      {
+                        echo '<div class="alert alert-danger" role="alert">';
+                        echo $_SESSION['error'];
+                        echo '</div>';
+
+                      }
+          ?>
+        <form class="user" role="form" id="additemsForm" name="addItems">
         <div class="modal-body">
-          <form class="user" method="post">
           <div class="input-group mb-3">
               <div class="input-group-prepend">
                  <span class="input-group-text" id="basic-addon3">Item Name</span>
@@ -69,7 +79,7 @@
               <div class="input-group-prepend">
                  <span class="input-group-text" id="basic-addon3">Quantity</span>
               </div>
-                <input type="numbers" class="form-control" name="quantity" id="quantity"  aria-describedby="basic-addon3">
+                <input type="text" class="form-control" name="quantity" id="quantity"  aria-describedby="basic-addon3">
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -83,15 +93,16 @@
               </div>
                 <input type="text" class="form-control" name="receiver_name" id="receiver_name" aria-describedby="basic-addon3">
             </div>
-          </form>
+            <div class="modal-footer">
+              <button class="btn btn-secondary"  data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="submit">Add Item</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary">Add Item</a>
-        </div>
+      </form>
       </div>
     </div>
   </div>
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -102,7 +113,10 @@
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
-
+  <!-- ajax file for handling post -->
+  <script type="text/javascript" src="js/additems.js"></script>
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+ <script  type="text/javascript" src="js/bootstrap.min.js"></script>
   <!-- Page level plugins -->
   <script src="vendor/chart.js/Chart.min.js"></script>
 

@@ -1,11 +1,80 @@
 <?php  
-  //session_start();
-  class Crudoperationsonitems extends User{
+//session_start();
+$item_name=
+$description=$po_number=$quantity=$delivery_date=$receiver_name=$creation_id="";
+class Crudoperationsonitems extends mysqli{
+    
+    function __construct()
+    {
+      Parent::__construct("localhost","root","","inventory_db");
+  
+      if($this->connect_error){
+          $_SESSION['error']="DB Connection error: ". $this->connect_error;
+         return;
+      }else
+      {
 
-  public function createNewItem ($data){
+        if(isset($_GET['item_name']))
+        {
+
+            $item_name =$_GET['item_name'];
+            $description =$_GET['description'];
+            $po_number = $_GET['po_number'];
+            $quantity = $_GET['quantity'];
+            $delivery_date = $_GET['delivery_date'];
+            $receiver_name=$_GET['receiver_name'];
+            $creation_id = $_SESSION['user_id'];
+
+            $this->addItem($item_name,$description, $po_number,$quantity,$delivery_date,$receiver_name,$creation_id);
+            $this->getItems();
+
+        }
+     
+      }
+
+}
+
+public function addItem($item_name,
+$description, $po_number,$quantity,$delivery_date,$receiver_name,$creation_id)
+{
 
 
-        if($data["item_name"]= ""){
+   //INSERT ITEM Query 
+   $q="INSERT INTO delivereditems_tbl(item_id,item_name,item_description,po_number,quantity,delivery_date,receiver_name,creater_id,creation_date)
+        VALUES('','$item_name','$description','$po_number','$quantity','$delivery_date','$receiver_name','$creation_id',CURRENT_TIMESTAMP)";
+   
+   $run = $this->query($q); //execute the INSERT query
+   //check if the query is successfully executed
+   if($run)
+   {
+       // $crudops = $this->getItems();
+       
+        header("Location:http://localhost/IMS/newlydelivereditems.php");
+   }
+   else
+   {
+       $_SESSION['error']="Error occurs when adding the item";
+   }
+}
+ public function getItems(){
+    $q = "SELECT * FROM delivereditems_tbl";
+    $run = $this->query($q);
+    $row = $run->fetch_object();
+    return $row;
+ }
+ 
+
+}
+
+
+
+
+  /*session_start();
+  
+  public function addItems(){
+
+
+        /*if($data["item_name"]= ""){
            
             $_SESSION['error'] = "Item Name Cannot be empty.";
         }elseif($data["description"]= ""){
@@ -31,28 +100,23 @@
             $quantity = $data["quantity"];
             $delivery_date = $data["delivery_date"];
             $receiver_name= $data["receiver_name"];
+            $creation_id = $_SESSION['user_id'];
 
         }
-
-        #create the table inventory_db.newlydelivereditems_tbl DDS
-        $q ="CREATE TABLE `newlydelivereditems_tbl` (
-             `newitem_id` int(10) auto_increment NOT NULL, 
-             `newitem_name` varchar(120) NOT NULL, 
-             `newitem_description` text NOT NULL, 
-             `po_number` int(50) NOT NULL, 
-             `quantity` int(50) NOT NULL,
-             `delivery_date` datetime NOT NULL, 
-             `receiver_name` varchar(120) NOT NULL, 
-             `creater_id` int(10) NOT NULL, 
-             `Creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ) 
-              ENGINE=InnoDB DEFAULT CHARSET=latin1;";
-
-
+        if(isset($_POST['item_name']))
+        {
       
-  
-    }
+        }
+        
+    public function getItems()
+        {
+            $q = "SELECT * FROM delivereditems_tbl";
+            $run = $this->query($q);
+            $row = $run->fetch_object();
+            return $row;
+        }
 
 
-}
+}*/
 
 ?>
