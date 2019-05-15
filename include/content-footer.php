@@ -126,8 +126,6 @@
           ?>
         <form class="user" role="form" id="issueitemsForm" name="issueItems">
         <div class="modal-body">
-              <?php echo $_REQUEST['item_id'];?>
-              <input type="hidden" name="item_id" id="item_id" value="<?php echo $_REQUEST['id'];?>">
 
           <div class="input-group mb-3">
               <div class="input-group-prepend">
