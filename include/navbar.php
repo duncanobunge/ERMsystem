@@ -39,7 +39,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Category of Delivered Item:</h6>
             <a class="collapse-item" href="newlydelivereditems.php">Newly Delivered Item</a>
-            <a class="collapse-item" href="cards.html">Existing Delivered Item</a>
+            <!--<a class="collapse-item" href="cards.html">Existing Delivered Item</a>-->
           </div>
         </div>
       </li>
@@ -48,15 +48,15 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
+          <span>Items Issuance</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="utilities-color.html">Colors</a>
-            <a class="collapse-item" href="utilities-border.html">Borders</a>
+            <h6 class="collapse-header">Issuance utility:</h6>
+            <a class="collapse-item" href="issued_items.php">Items Issued</a>
+            <!--<a class="collapse-item" href="utilities-border.html">Borders</a>
             <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>
+            <a class="collapse-item" href="utilities-other.html">Other</a>-->
           </div>
         </div>
       </li>

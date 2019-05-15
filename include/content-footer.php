@@ -58,6 +58,7 @@
         <form class="user" role="form" id="additemsForm" name="addItems">
         <div class="modal-body">
           <div class="input-group mb-3">
+ 
               <div class="input-group-prepend">
                  <span class="input-group-text" id="basic-addon3">Item Name</span>
               </div>
@@ -103,6 +104,77 @@
     </div>
   </div>
 
+   <!-- Item Issuance Modal-->
+  
+   <div class="modal fade" id="issueItemModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Issue Item</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <?php 
+                      if(isset($_SESSION['error']))
+                      {
+                        echo '<div class="alert alert-danger" role="alert">';
+                        echo $_SESSION['error'];
+                        echo '</div>';
+
+                      }
+          ?>
+        <form class="user" role="form" id="issueitemsForm" name="issueItems">
+        <div class="modal-body">
+              <?php echo $_REQUEST['item_id'];?>
+              <input type="hidden" name="item_id" id="item_id" value="<?php echo $_REQUEST['id'];?>">
+
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon3">Item Name</span>
+              </div>
+                <input type="text" class="form-control" name="item_name" id="item_name"  aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon3">Description</span>
+              </div>
+                <input type="text" class="form-control" name="description" id="description"  aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon3">P.O. No.</span>
+              </div>
+                <input type="text" class="form-control" name="po_number" id="po_number"  aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon3">Quantity</span>
+              </div>
+                <input type="text" class="form-control" name="quantity" id="quantity"  aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon3">Issuance Date</span>
+              </div>
+                <input type="date" class="form-control" name="delivery_date" id="delivery_date" aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon3">Receiver Name</span>
+              </div>
+                <input type="text" class="form-control" name="receiver_name" id="receiver_name" aria-describedby="basic-addon3">
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary"  data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="submit">Save</button>
+            </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -110,6 +182,17 @@
 
   <!-- Core plugin JavaScript-->
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script>
+  $("#issueItemModal").on('show.bs.modal', function(event){
+        var button = $(event.relatedTarget);           
+        var id = button.data('formid');
+        //alert(id);        
+        $.get('content-footer.php?id='+id,
+            function(data) {
+             $("#issueItemModal").html(data);   
+                });
+            });
+      </script>
 
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>

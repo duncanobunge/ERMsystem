@@ -14,8 +14,8 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Newly Delivered Items</h1>
-          <p class="mb-4">This is a dashboard for items that have been delivered for the first time in the store</p>
+          <h1 class="h3 mb-2 text-gray-800">Stock Issuance</h1>
+          <p class="mb-4">This is a dashboard for stock Issuance</p>
           <?php 
                       if(isset($_SESSION['error']))
                       {
@@ -28,7 +28,7 @@
           <!-- DataTables Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Delivery Particulars</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Stock Particulars</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -40,7 +40,7 @@
                       <th>P.O. No.</th>
                       <th>Quantity</th>
                       <th>Delivery Date</th>
-                      <th>Receiver</th>
+                      <th>Receiver(Staff Name)</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -49,16 +49,17 @@
                     <th>Item Name</th>
                     <th>Description</th>
                     <th>P.O. No.</th>
-                    <th>Quantity</th>
-                    <th>Delivery Date</th>
-                    <th>Receiver</th>
+                    <th>Qnty-Issued</th>
+                    <th>Issuance Date</th>
+                    <th>Staff Name</th>
                     <th>Actions</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <?php 
                         $conn = mysqli_connect("localhost","root","","inventory_db");
-                        $q ="SELECT * FROM delivereditems_tbl";
+                        $q ="SELECT * FROM delivereditems_tbl dtbl INNER JOIN issued_items_tbl itbl
+                             ON dtbl.item_id=itbl.item_id";
                         $run = mysqli_query($conn, $q);
                         if($run)
                           {
@@ -70,20 +71,14 @@
                       <td><?php echo $row['item_description']; ?></td>
                       <td><?php echo $row['po_number']; ?></td>
                       <td><?php echo $row['quantity']; ?></td>
-                      <td><?php echo $row['delivery_date']; ?></td>
-                      <td><?php echo $row['receiver_name']; ?></td>
+                      <td><?php echo $row['date_of_issuance']; ?></td>
+                      <td><?php echo $row['item_receiver']; ?></td>
                       <td>
                          <a href="edit_item.php?id=<?php echo $row['item_id']; ?>">
                          <button class="btn btn-primary">
                                 Edit
                           </button>
                           </a> |
-                          <a href="add_issued_items.php?id=<?php echo $row['item_id']; ?>">
-                          <button class="btn btn-warning">
-                                Issue
-                          </button>
-                          </a> 
-                          |
                          <a href="delete_item.php?id=<?php echo $row['item_id']; ?>"><button class="btn btn-danger">Trash</button></a>
                       </td>
                     </tr>
@@ -96,10 +91,10 @@
               </div>
             </div>
           </div>
-          <div id="additemsection">
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addItemModal">
+          <div id="issueitemsection">
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#issueItemModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  <button class="btn btn-primary" >Add</button>
+                  <button class="btn btn-primary" >Issue Item</button>
             </a>
           </div>
         </div>
