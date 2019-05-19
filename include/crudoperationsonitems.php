@@ -1,7 +1,7 @@
 <?php  
 //session_start();
-$item_name=
-$description=$po_number=$quantity=$delivery_date=$receiver_name=$creation_id="";
+$item_supplier=
+$description=$po_number=$quantity=$itemuom=$remarks=$delivery_date=$receiver_name=$creation_id="";
 class Crudoperationsonitems extends mysqli{
     
     function __construct()
@@ -14,18 +14,32 @@ class Crudoperationsonitems extends mysqli{
       }else
       {
 
-        if(isset($_GET['item_name']))
+        if(isset($_GET['item_supplier']))
         {
 
-            $item_name =$_GET['item_name'];
+            $item_supplier =$_GET['item_supplier'];
             $description =$_GET['description'];
             $po_number = $_GET['po_number'];
             $quantity = $_GET['quantity'];
             $delivery_date = $_GET['delivery_date'];
-            $receiver_name=$_GET['receiver_name'];
-            $creation_id = $_SESSION['user_id'];
+            $itemuom = $_GET['uom'];
+            $creation_id = $_SESSION['user'];
+            $remarks = $_GET['remarks'];
 
-            $this->addItem($item_name,$description, $po_number,$quantity,$delivery_date,$receiver_name,$creation_id);
+            $qu ="INSERT INTO `delivereditems_tbl` (`item_id`, `item_supplier`, `item_description`, `po_number`, `quantity`, `uom`, `delivery_date`, `receiver_name`, `remarks`, `creater_id`, `creation_date`) 
+            VALUES (NULL, '$item_supplier', '$description', '$po_number', '$quantity', '$itemuom', '2019-04-21 00:00:00', 'Uncn', 'std quality', '2', CURRENT_TIMESTAMP)";
+            $run =$this->query($qu); //execute the INSERT query
+        
+   //check if the query is successfully executed
+   if($run)
+   {
+    header("Location:http://localhost/IMS/newlydelivereditems.php");
+   }
+   else
+   {
+       $_SESSION['error']="Error occurs when adding the item";
+   }
+         /*   $this->addItem($item_supplier,$description, $po_number,$quantity,$itemuom,$delivery_date,$receiver_name,$remarks,$creation_id);*/
             $this->getItems();
 
         }
@@ -34,22 +48,21 @@ class Crudoperationsonitems extends mysqli{
 
 }
 
-public function addItem($item_name,
-$description, $po_number,$quantity,$delivery_date,$receiver_name,$creation_id)
+public function addItem($item_supplier,
+$description, $po_number,$quantity,$itemuom,$delivery_date,$receiver_name,$remarks,$creation_id)
 {
 
 
    //INSERT ITEM Query 
-   $q="INSERT INTO delivereditems_tbl(item_id,item_name,item_description,po_number,quantity,delivery_date,receiver_name,creater_id,creation_date)
-        VALUES('','$item_name','$description','$po_number','$quantity','$delivery_date','$receiver_name','$creation_id',CURRENT_TIMESTAMP)";
-   
+   $q="INSERT INTO delivereditems_tbl(item_id,item_supplier,item_description,po_number,quantity,uom,delivery_date,receiver_name,remarks,creater_id,creation_date)
+        VALUES('','$item_supplier','$description','$po_number','$quantity','$itemuom','$delivery_date','$receiver_name','$remarks','$creation_id',CURRENT_TIMESTAMP)";
    $run = $this->query($q); //execute the INSERT query
+   var_dump($run);
    //check if the query is successfully executed
    if($run)
    {
-       // $crudops = $this->getItems();
-       
-        header("Location:http://localhost/IMS/newlydelivereditems.php");
+
+    header("Location:http://localhost/IMS/newlydelivereditems.php");
    }
    else
    {

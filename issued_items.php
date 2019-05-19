@@ -35,23 +35,27 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Item Name</th>
-                      <th>Description</th>
-                      <th>P.O. No.</th>
-                      <th>Quantity</th>
-                      <th>Delivery Date</th>
-                      <th>Receiver(Staff Name)</th>
-                      <th>Actions</th>
+                    <th>Date</th>
+                    <th>Item Description</th>
+                    <th>Department</th>
+                    <th>Uoi</th>
+                    <th>Qty Issued</th>
+                    <th>Facility</th>
+                    <th>Receiving Officer</th>
+                    <th>Voucher No.</th>
+                    <th>Actions</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                    <th>Item Name</th>
-                    <th>Description</th>
-                    <th>P.O. No.</th>
-                    <th>Qnty-Issued</th>
-                    <th>Issuance Date</th>
-                    <th>Staff Name</th>
+                    <th>Date</th>
+                    <th>Item Description</th>
+                    <th>Department</th>
+                    <th>Uoi</th>
+                    <th>Qty Issued</th>
+                    <th>Facility</th>
+                    <th>Receiving Officer</th>
+                    <th>Voucher No.</th>
                     <th>Actions</th>
                     </tr>
                   </tfoot>
@@ -67,19 +71,21 @@
 		                      {
                       ?>
                     <tr>
-                      <td><?php echo $row['item_name']; ?></td>
-                      <td><?php echo $row['item_description']; ?></td>
-                      <td><?php echo $row['po_number']; ?></td>
-                      <td><?php echo $row['quantity']; ?></td>
                       <td><?php echo $row['date_of_issuance']; ?></td>
+                      <td><?php echo $row['item_description']; ?></td>
+                      <td><?php echo $row['department']; ?></td>
+                      <td><?php echo $row['uoi']; ?></td>
+                      <td><?php echo $row['quantity']; ?></td>
+                      <td><?php echo $row['facility']; ?></td>
                       <td><?php echo $row['item_receiver']; ?></td>
+                      <td><?php echo $row['voucher_no']; ?></td>
                       <td>
-                         <a href="edit_item.php?id=<?php echo $row['item_id']; ?>">
+                         <a href="edit_issued_items.php?id=<?php echo $row['item_issued_id']; ?>">
                          <button class="btn btn-primary">
                                 Edit
                           </button>
                           </a> |
-                         <a href="delete_item.php?id=<?php echo $row['item_id']; ?>"><button class="btn btn-danger">Trash</button></a>
+                         <a href="delete_issued_items.php?id=<?php echo $row['item_issued_id']; ?>"><button class="btn btn-danger">Trash</button></a>
                       </td>
                     </tr>
                         <?php 
@@ -90,12 +96,6 @@
                 </table>
               </div>
             </div>
-          </div>
-          <div id="issueitemsection">
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#issueItemModal">
-                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  <button class="btn btn-primary" >Issue Item</button>
-            </a>
           </div>
         </div>
         <!-- /.container-fluid -->

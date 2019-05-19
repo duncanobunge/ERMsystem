@@ -35,17 +35,18 @@ $row = mysqli_fetch_assoc($result);
                         {
                         $id=$_REQUEST['id'];
                         //$trn_date = date("Y-m-d H:i:s");
-                        $itemname =$_REQUEST['item_name'];
+                        $itemsupplier =$_REQUEST['item_supplier'];
                         $description =$_REQUEST['description'];
                         $po_number =$_REQUEST['po_number'];
                         $quantity =$_REQUEST['quantity'];
                         $delivery_date =$_REQUEST['delivery_date'];
-                        $receiver_name =$_REQUEST['receiver_name'];
+                        $receiver_name =$_SESSION['user'];
+                        $itemuom=$_REQUEST['uom'];
                         //$submittedby = $_SESSION["user"];
 
-                        $query = "UPDATE `delivereditems_tbl` SET `item_name` = '$itemname', `item_description` = '$description',
-                         `po_number` = '$po_number', `quantity` = '$quantity', `delivery_date` = '$delivery_date',
-                          `receiver_name` = '$receiver_name', `creater_id` = 1
+                        $query = "UPDATE `delivereditems_tbl` SET `item_supplier` = '$itemname', `item_description` = '$description',
+                        `delivery_date` = '$delivery_date',`po_number` = '$po_number', `quantity` = '$quantity', 
+                          uom = '$itemuom',`receiver_name` = '$receiver_name', `creater_id` = 1
                          WHERE `delivereditems_tbl`.`item_id` = '$id'";
                         mysqli_query($con, $query) or die(mysqli_error($con));
                         echo("<script>location.href = 'newlydelivereditems.php';</script>");
@@ -57,7 +58,7 @@ $row = mysqli_fetch_assoc($result);
         <div class="dash">
         <form class="user" method="post" action="", role="form" id="additemsForm" name="addItems">
         <div class="modal-body">
-          <div class="input-group mb-3">
+            <div class="input-group mb-3">
               <input type="hidden" name="new" value="1" />
                <input name="id" type="hidden" value="<?php echo $row['item_id'];?>" />
               <div class="input-group-prepend">
@@ -68,10 +69,26 @@ $row = mysqli_fetch_assoc($result);
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                 <span class="input-group-text" id="basic-addon3">Description</span>
+                 <span class="input-group-text" id="basic-addon3">Item Description</span>
               </div>
                 <input type="text" class="form-control" name="description" id="description"  
                 value="<?php echo $row['item_description'];?>" aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon3">Delivery Date</span>
+              </div>
+                <input type="date" class="form-control" name="delivery_date" id="delivery_date" 
+                value="<?php echo $row['delivery_date'];?>" aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group mb-3">
+              <input type="hidden" name="new" value="1" />
+               <input name="id" type="hidden" value="<?php echo $row['item_id'];?>" />
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon3">Item Supplier</span>
+              </div>
+                <input type="text" class="form-control" name="item_supplier" id="item_supplier"  
+                value="<?php echo $row['item_supplier'];?>" aria-describedby="basic-addon3">
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -82,24 +99,24 @@ $row = mysqli_fetch_assoc($result);
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                 <span class="input-group-text" id="basic-addon3">Quantity</span>
+                 <span class="input-group-text" id="basic-addon3">Qnty Delivered</span>
               </div>
                 <input type="text" class="form-control" name="quantity" id="quantity" 
                 value="<?php echo $row['quantity'];?>" aria-describedby="basic-addon3">
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                 <span class="input-group-text" id="basic-addon3">Delivery Date</span>
+                 <span class="input-group-text" id="basic-addon3">UoM</span>
               </div>
-                <input type="date" class="form-control" name="delivery_date" id="delivery_date" 
-                value="<?php echo $row['delivery_date'];?>" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" name="uom" id="uom" 
+                value="<?php echo $row['uom'];?>" aria-describedby="basic-addon3">
             </div>
             <div class="input-group mb-3">
               <div class="input-group-prepend">
-                 <span class="input-group-text" id="basic-addon3">Receiver Name</span>
+                 <span class="input-group-text" id="basic-addon3">Remarks</span>
               </div>
-                <input type="text" class="form-control" name="receiver_name" id="receiver_name" 
-                value="<?php echo $row['receiver_name'];?>" aria-describedby="basic-addon3">
+                <input type="text" class="form-control" name="remarks" id="remarks" 
+                value="<?php echo $row['remarks'];?>" aria-describedby="basic-addon3">
             </div>
             <div class="modal-footer">
               <button class="btn btn-secondary"  data-dismiss="modal">Cancel</button>

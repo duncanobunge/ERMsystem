@@ -35,24 +35,27 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Item Name</th>
-                      <th>Description</th>
-                      <th>P.O. No.</th>
-                      <th>Quantity</th>
+                     
+                      <th>Item Description</th>
                       <th>Delivery Date</th>
-                      <th>Receiver</th>
+                      <th>Supplier</th>
+                      <th>P.O. No.</th>
+                      <th>Qty Received</th>
+                      <th>UoM</th>
+                      <th>Remarks</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                    <th>Item Name</th>
-                    <th>Description</th>
-                    <th>P.O. No.</th>
-                    <th>Quantity</th>
-                    <th>Delivery Date</th>
-                    <th>Receiver</th>
-                    <th>Actions</th>
+                      <th>Item Description</th>
+                      <th>Delivery Date</th>
+                      <th>Supplier</th>
+                      <th>P.O. No.</th>
+                      <th>Qty Received</th>
+                      <th>UoM</th>
+                      <th>Remarks</th>
+                      <th>Actions</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -66,11 +69,13 @@
 		                      {
                       ?>
                     <tr>
-                      <td><?php echo $row['item_name']; ?></td>
+                      
                       <td><?php echo $row['item_description']; ?></td>
+                      <td><?php echo $row['delivery_date']; ?></td>
+                      <td><?php echo $row['item_supplier']; ?></td>
                       <td><?php echo $row['po_number']; ?></td>
                       <td><?php echo $row['quantity']; ?></td>
-                      <td><?php echo $row['delivery_date']; ?></td>
+                      <td><?php echo $row['uom']; ?></td>
                       <td><?php echo $row['receiver_name']; ?></td>
                       <td>
                          <a href="edit_item.php?id=<?php echo $row['item_id']; ?>">
@@ -99,9 +104,22 @@
           <div id="additemsection">
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#addItemModal">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  <button class="btn btn-primary" >Add</button>
+                  <button class="btn btn-primary">Add</button>
             </a>
           </div>
+          <div class="container">
+            <h1>Upload Excel Data</h1>
+            <form method="POST" action="excelUpload.php" enctype="multipart/form-data">
+            <div class="form-group">
+            <label>Upload Excel File</label>
+            <input type="file" name="file" class="form-control">
+            </div>
+            <div class="form-group">
+            <button type="submit" name="Submit" class="btn btn-success">Upload</button>
+            </div>
+            <!--<p>Download your data  : <a href="demo.ods">Demo.ods</a></p>-->
+            </form>
+            </div>
         </div>
         <!-- /.container-fluid -->
 

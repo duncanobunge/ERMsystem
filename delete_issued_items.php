@@ -8,8 +8,7 @@
 }
 $con = mysqli_connect("localhost","root","","inventory_db");
 $id=$_GET['id'];
-echo $id;
-$query = "DELETE FROM issued_items_tbl WHERE issued_item_id='$id'"; 
+$query = "DELETE FROM `issued_items_tbl` WHERE `issued_items_tbl`.`item_issued_id`='$id'"; 
 $run = mysqli_query($con, $query);
 
 if($run){
