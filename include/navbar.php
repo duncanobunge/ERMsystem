@@ -26,26 +26,44 @@
   <hr class="sidebar-divider">
 
   <!-- Heading -->
-  <div class="sidebar-heading">
+  <!--<div class="sidebar-heading">
     Interface
-  </div>
+  </div>-->
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-cog"></i>
-          <span>Item Delivery</span>
+          <span>Mini Dashboard</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Category of Delivered Item:</h6>
+            <h6 class="collapse-header">Delivered Items:</h6>
             <a class="collapse-item" href="newlydelivereditems.php">Newly Delivered Item</a>
-            <!--<a class="collapse-item" href="cards.html">Existing Delivered Item</a>-->
+            
+          </div>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Departments:</h6>
+            <a class="collapse-item" href="department.php">Departments</a>
+          </div>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Item Category:</h6>
+            <a class="collapse-item" href="category.php">Add Category</a>
+          </div>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Issuance utility:</h6>
+            <a class="collapse-item" href="issued_items.php">Items Issued</a>
           </div>
         </div>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Items Issuance</span>
@@ -53,13 +71,13 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Issuance utility:</h6>
-            <a class="collapse-item" href="issued_items.php">Items Issued</a>
-            <!--<a class="collapse-item" href="utilities-border.html">Borders</a>
+            <a class="collapse-item" href="">Items Issued</a>
+            --<a class="collapse-item" href="utilities-border.html">Borders</a>
             <a class="collapse-item" href="utilities-animation.html">Animations</a>
-            <a class="collapse-item" href="utilities-other.html">Other</a>-->
+            <a class="collapse-item" href="utilities-other.html">Other</a>--
           </div>
         </div>
-      </li>
+      </li>-->
 
       <!-- Divider -->
       <hr class="sidebar-divider">

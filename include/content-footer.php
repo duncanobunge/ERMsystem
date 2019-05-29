@@ -109,6 +109,51 @@
       </div>
     </div>
   </div>
+  <!-- Add Department Modal-->
+  
+  <div class="modal fade" id="addDepartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Department</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <?php 
+                      if(isset($_SESSION['error']))
+                      {
+                        echo '<div class="alert alert-danger" role="alert">';
+                        echo $_SESSION['error'];
+                        echo '</div>';
+
+                      }
+          ?>
+        <form class="user" role="form" id="adddepartsForm" name="addDepart">
+        <div class="modal-body">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon3">Department Name</span>
+              </div>
+                <input type="text" class="form-control" name="depart_name" id="depart_name" required="required" aria-describedby="basic-addon3">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                 <span class="input-group-text" id="basic-addon3">Department Description</span>
+              </div>
+                <input type="text" class="form-control" name="description" id="description" required="required" aria-describedby="basic-addon3">
+            </div>
+
+            <div class="modal-footer">
+              <button class="btn btn-secondary"  data-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="submit">Add Department</button>
+            </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

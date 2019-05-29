@@ -3,9 +3,8 @@
 $item_supplier=
 $description=$po_number=$quantity=$itemuom=$remarks=$delivery_date=$receiver_name=$creation_id="";
 class Crudoperationsonitems extends mysqli{
-    
-    function __construct()
-    {
+function __construct()
+ {
       Parent::__construct("localhost","root","","inventory_db");
   
       if($this->connect_error){
@@ -31,20 +30,35 @@ class Crudoperationsonitems extends mysqli{
             $run =$this->query($qu); //execute the INSERT query
         
    //check if the query is successfully executed
-   if($run)
-   {
-    header("Location:http://localhost/IMS/newlydelivereditems.php");
-   }
-   else
-   {
-       $_SESSION['error']="Error occurs when adding the item";
-   }
-         /*   $this->addItem($item_supplier,$description, $po_number,$quantity,$itemuom,$delivery_date,$receiver_name,$remarks,$creation_id);*/
-            $this->getItems();
+                if($run)
+                {
+                    header("Location:http://localhost/IMS/newlydelivereditems.php");
+                }
+                else
+                {
+                    $_SESSION['error']="Error occurs when adding the item";
+                }
+                        /*   $this->addItem($item_supplier,$description, $po_number,$quantity,$itemuom,$delivery_date,$receiver_name,$remarks,$creation_id);*/
+                $this->getItems();
 
+        }elseif(isset($_GET['depart_name'])){
+            $depart_name = $_GET['depart_name'];
+            $depart_description = $_GET['description'];
+
+            $insert_qry = "INSERT INTO departments (department_id,department_name,department_description,creator_id,date_of_creation)
+                           VALUES (NULL,'$depart_name','$depart_description','0',CURRENT_TIMESTAMP)";
+            $exe_qry = $this->query($insert_qry);
+                
+               if($exe_qry)
+                  {
+                    header("Location:http://localhost/IMS/department.php");
+                  }
+               else
+                 {
+                    $_SESSION['error']="Error occurs when adding the department";
+                 }
         }
-     
-      }
+    }
 
 }
 
@@ -81,55 +95,5 @@ $description, $po_number,$quantity,$itemuom,$delivery_date,$receiver_name,$remar
 
 
 
-
-  /*session_start();
-  
-  public function addItems(){
-
-
-        /*if($data["item_name"]= ""){
-           
-            $_SESSION['error'] = "Item Name Cannot be empty.";
-        }elseif($data["description"]= ""){
-
-            $_SESSION['error'] = "Description Cannot be empty.";
-        }elseif($data["po_number"]= ""){
-
-            $_SESSION['error'] = "P.O. No. Cannot be empty.";
-        }elseif($data["quantity"]= ""){
-
-            $_SESSION['error'] = "Quantity Cannot be empty.";
-        }elseif($data["delivery_date"]= ""){
-
-            $_SESSION['error'] = "Delivery Date Cannot be empty.";
-        }elseif($data["receiver_name"]= ""){
-
-            $_SESSION['error'] = "Receiver Name Cannot be empty.";
-        } else{
-
-            $item_name = $data["item_name"];
-            $description = $data["description"];
-            $po_number = $data["po_number"];
-            $quantity = $data["quantity"];
-            $delivery_date = $data["delivery_date"];
-            $receiver_name= $data["receiver_name"];
-            $creation_id = $_SESSION['user_id'];
-
-        }
-        if(isset($_POST['item_name']))
-        {
-      
-        }
-        
-    public function getItems()
-        {
-            $q = "SELECT * FROM delivereditems_tbl";
-            $run = $this->query($q);
-            $row = $run->fetch_object();
-            return $row;
-        }
-
-
-}*/
 
 ?>
